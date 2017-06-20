@@ -1,0 +1,36 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="full-page-canvas.js"></script>
+</head>
+<body> <canvas id="test" style="width:100%;height:100%;margin:0;position:absolute;"></canvas>
+<script src="wgl_render.js"></script>
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+
+    
+    var wgl = new WGL(FULL_PAGE_CANVAS.mount(),true);
+    wgl.setPixelSize(10);
+    wgl.setShader("vertexSource.s",1);
+    wgl.setShader("fragmentSource.s",0);
+    wgl.init();
+    wgl.setFillColor(new Color(0.6,0.1,0.4,1),'u_color');
+    wgl.setClearColor(null);
+    wgl.setAttribute("coordinates",2,wgl.gl.FLOAT, false, 0, 0 );
+    wgl.setUniform('u_resolution','vec2',[wgl.canvas.width,wgl.canvas.height]);
+    function test(){
+        for(var i=0;i<1600;i++){
+             wgl.drawPixel( (Math.random()*1000%(wgl.canvas.width/wgl.pixelSize)),((Math.random()*1000%(wgl.canvas.height/wgl.pixelSize))) );
+        }
+        requestAnimationFrame(test);
+    }
+    console.log(wgl.canvas.width+" "+wgl.canvas.height+" "+wgl.pixelSize);
+       test();
+     wgl.drawPixel(0,0);
+     wgl.drawPixel(1,1);
+     wgl.drawPixel(191,0);
+     wgl.drawPixel(191,98);
+     wgl.drawPixel(0,98);
+    
+</script>
+    
+    </body>
