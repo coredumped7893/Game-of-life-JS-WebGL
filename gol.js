@@ -72,7 +72,7 @@ var alive=0;
 function GameState(){
     this.currentState = [];
     this.nextState = [];
-    this.cellSize=10;
+    this.cellSize=4;
     this.bro ;
     this.ageColorEnable=false;
     this.showBenchmark=true;
